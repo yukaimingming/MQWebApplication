@@ -1,0 +1,97 @@
+﻿using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic; // 需要引入这个
+using System.Threading;
+using System.Threading.Tasks;
+using MQWebApplication.Controllers;
+using MQWebApplication.Models;
+
+namespace MQWebApplication;
+
+public class DailyMqTaskService : BackgroundService
+{
+    private readonly ILogger<DailyMqTaskService> _logger;
+    private readonly IServiceProvider _serviceProvider;
+
+    public DailyMqTaskService(IServiceProvider serviceProvider, ILogger<DailyMqTaskService> logger)
+    {
+        _serviceProvider = serviceProvider;
+        _logger = logger;
+    }
+
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    {
+        _logger.LogInformation("Daily Concurrent MQ Task Service is starting.");
+
+        while (!stoppingToken.IsCancellationRequested)
+            try
+            {
+                // 计算下一次执行时间（第二天的午夜0点）
+                var now = DateTime.Now;
+                var nextRunTime = now.Date.AddDays(1); // .Date 获取日期部分（时间为00:00:00）
+                // 计算需要延迟的时间
+                var delay = nextRunTime - now;
+
+                _logger.LogInformation("Next daily concurrent MQ task will run at: {runTime}", nextRunTime);
+                await Task.Delay(delay, stoppingToken);
+
+                _logger.LogInformation("Starting concurrent MQ tasks at {time}", DateTime.Now);
+
+                // 使用 Task.WhenAll 并发执行任务
+                await ExecuteConcurrentTasks(stoppingToken);
+
+                _logger.LogInformation("All concurrent MQ tasks finished successfully.");
+            }
+            catch (TaskCanceledException)
+            {
+                break;
+            }
+            catch (Exception ex)
+            {
+                // 如果 Task.WhenAll 中的任何一个任务失败，异常会在这里被捕获
+                _logger.LogError(ex, "An error occurred during concurrent task execution.");
+                await Task.Delay(TimeSpan.FromMinutes(5), stoppingToken);
+            }
+
+        _logger.LogInformation("Daily Concurrent MQ Task Service is stopping.");
+    }
+
+    private async Task ExecuteConcurrentTasks(CancellationToken stoppingToken)
+    {
+        // 创建一个新的依赖注入作用域
+        using var scope = _serviceProvider.CreateScope();
+        var controller = scope.ServiceProvider.GetRequiredService<MQController>();
+        var data = new PutMsgDto();
+
+        // 1. 创建一个任务列表
+        var tasks = new List<Task>();
+
+        // 2. 使用 Task.Run 将每个同步方法包装成一个任务，并添加到列表
+        //    Task.Run 会从线程池中获取一个线程来执行你的代码
+        tasks.Add(Task.Run(() =>
+        {
+            _logger.LogInformation("开始推送科室信息...");
+            controller.ComposePutAndGetMsgks(data);
+            _logger.LogInformation("科室信息推送完成。");
+        }, stoppingToken));
+
+        tasks.Add(Task.Run(() =>
+        {
+            _logger.LogInformation("开始推送员工信息...");
+            controller.ComposePutAndGetMsgry(data);
+            _logger.LogInformation("员工信息推送完成。");
+        }, stoppingToken));
+
+        tasks.Add(Task.Run(() =>
+        {
+            _logger.LogInformation("开始推送病区信息...");
+            controller.ComposePutAndGetMsgbq(data);
+            _logger.LogInformation("病区信息推送完成。");
+        }, stoppingToken));
+
+        // 3. 等待所有任务完成
+        await Task.WhenAll(tasks);
+    }
+}

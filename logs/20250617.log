@@ -1,0 +1,8 @@
+2025-06-17 21:08:15.988 +08:00 || Information ||  || 服务启动："Services Starting..." ||  ||end 
+2025-06-17 21:08:16.041 +08:00 || Information ||  || 运行环境: "MQ接口服务正在运行!!! 请勿随意关闭接口服务，避免造成数据丢失!!! Powered by .NET 9.0.6 强力驱动 on Kestrel" ||  ||end 
+2025-06-17 21:08:16.794 +08:00 || Warning || Microsoft.AspNetCore.Server.Kestrel || Overriding address(es) '"http://localhost:5016"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead. ||  ||end 
+2025-06-17 21:08:16.823 +08:00 || Information || Microsoft.Hosting.Lifetime || Now listening on: "http://[::]:5000" ||  ||end 
+2025-06-17 21:08:16.825 +08:00 || Information || Microsoft.Hosting.Lifetime || Application started. Press Ctrl+C to shut down. ||  ||end 
+2025-06-17 21:08:16.825 +08:00 || Information || Microsoft.Hosting.Lifetime || Hosting environment: "Development" ||  ||end 
+2025-06-17 21:08:16.827 +08:00 || Information || Microsoft.Hosting.Lifetime || Content root path: "D:\客户源码--余开明\私单\江西附属医院\MQWebApplication\MQWebApplication" ||  ||end 
+2025-06-17 21:08:22.068 +08:00 || Information || Microsoft.Hosting.Lifetime || Application is shutting down... ||  ||end 

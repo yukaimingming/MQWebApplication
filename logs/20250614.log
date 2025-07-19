@@ -1,0 +1,103 @@
+2025-06-14 14:05:00.539 +08:00 || Information ||  || 服务启动："Services Starting..." ||  ||end 
+2025-06-14 14:05:00.589 +08:00 || Information ||  || 运行环境: "MQ接口服务正在运行!!! 请勿随意关闭接口服务，避免造成数据丢失!!! Powered by .NET 9.0.6 强力驱动 on Kestrel" ||  ||end 
+2025-06-14 14:05:00.749 +08:00 || Warning || Microsoft.AspNetCore.Server.Kestrel || Overriding address(es) '"http://localhost:5016"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead. ||  ||end 
+2025-06-14 14:05:00.777 +08:00 || Information || Microsoft.Hosting.Lifetime || Now listening on: "http://[::]:5000" ||  ||end 
+2025-06-14 14:05:00.779 +08:00 || Information || Microsoft.Hosting.Lifetime || Application started. Press Ctrl+C to shut down. ||  ||end 
+2025-06-14 14:05:00.780 +08:00 || Information || Microsoft.Hosting.Lifetime || Hosting environment: "Development" ||  ||end 
+2025-06-14 14:05:00.782 +08:00 || Information || Microsoft.Hosting.Lifetime || Content root path: "D:\客户源码--余开明\私单\江西附属医院\MQWebApplication\MQWebApplication" ||  ||end 
+2025-06-14 14:06:10.527 +08:00 || Information || Microsoft.AspNetCore.Hosting.Diagnostics || Request starting "HTTP/1.1" "GET" "http"://"localhost:5000""""/scalar/""" - null null ||  ||end 
+2025-06-14 14:06:10.552 +08:00 || Warning || Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware || Failed to determine the https port for redirect. ||  ||end 
+2025-06-14 14:06:10.558 +08:00 || Information || Microsoft.AspNetCore.Routing.EndpointMiddleware || Executing endpoint '"HTTP: GET /scalar/{documentName?}"' ||  ||end 
+2025-06-14 14:06:10.612 +08:00 || Information || Microsoft.AspNetCore.Http.Result.ContentResult || Write content with HTTP Response ContentType of "text/html" ||  ||end 
+2025-06-14 14:06:10.616 +08:00 || Information || Microsoft.AspNetCore.Routing.EndpointMiddleware || Executed endpoint '"HTTP: GET /scalar/{documentName?}"' ||  ||end 
+2025-06-14 14:06:10.618 +08:00 || Information || Microsoft.AspNetCore.Hosting.Diagnostics || Request finished "HTTP/1.1" "GET" "http"://"localhost:5000""""/scalar/""" - 200 904 "text/html" 92.9578ms ||  ||end 
+2025-06-14 14:06:10.638 +08:00 || Information || Microsoft.AspNetCore.Hosting.Diagnostics || Request starting "HTTP/1.1" "GET" "http"://"localhost:5000""""/scalar/scalar.aspnetcore.js""" - null null ||  ||end 
+2025-06-14 14:06:10.638 +08:00 || Information || Microsoft.AspNetCore.Hosting.Diagnostics || Request starting "HTTP/1.1" "GET" "http"://"localhost:5000""""/scalar/scalar.js""" - null null ||  ||end 
+2025-06-14 14:06:10.642 +08:00 || Information || Microsoft.AspNetCore.Routing.EndpointMiddleware || Executing endpoint '"HTTP: GET /scalar/scalar.aspnetcore.js"' ||  ||end 
+2025-06-14 14:06:10.644 +08:00 || Information || Microsoft.AspNetCore.Routing.EndpointMiddleware || Executing endpoint '"HTTP: GET /scalar/scalar.js"' ||  ||end 
+2025-06-14 14:06:10.655 +08:00 || Information || Microsoft.AspNetCore.Http.Result.StatusCodeResult || Setting HTTP status code 304. ||  ||end 
+2025-06-14 14:06:10.655 +08:00 || Information || Microsoft.AspNetCore.Http.Result.StatusCodeResult || Setting HTTP status code 304. ||  ||end 
+2025-06-14 14:06:10.657 +08:00 || Information || Microsoft.AspNetCore.Routing.EndpointMiddleware || Executed endpoint '"HTTP: GET /scalar/scalar.aspnetcore.js"' ||  ||end 
+2025-06-14 14:06:10.658 +08:00 || Information || Microsoft.AspNetCore.Routing.EndpointMiddleware || Executed endpoint '"HTTP: GET /scalar/scalar.js"' ||  ||end 
+2025-06-14 14:06:10.661 +08:00 || Information || Microsoft.AspNetCore.Hosting.Diagnostics || Request finished "HTTP/1.1" "GET" "http"://"localhost:5000""""/scalar/scalar.aspnetcore.js""" - 304 null null 24.0371ms ||  ||end 
+2025-06-14 14:06:10.661 +08:00 || Information || Microsoft.AspNetCore.Hosting.Diagnostics || Request finished "HTTP/1.1" "GET" "http"://"localhost:5000""""/scalar/scalar.js""" - 304 null null 24.2905ms ||  ||end 
+2025-06-14 14:06:10.733 +08:00 || Information || Microsoft.AspNetCore.Hosting.Diagnostics || Request starting "HTTP/1.1" "GET" "http"://"localhost:5000""""/openapi/v1.json""" - null null ||  ||end 
+2025-06-14 14:06:10.737 +08:00 || Information || Microsoft.AspNetCore.Routing.EndpointMiddleware || Executing endpoint '"HTTP: GET /openapi/{documentName}.json"' ||  ||end 
+2025-06-14 14:06:11.013 +08:00 || Information || Microsoft.AspNetCore.Routing.EndpointMiddleware || Executed endpoint '"HTTP: GET /openapi/{documentName}.json"' ||  ||end 
+2025-06-14 14:06:11.015 +08:00 || Information || Microsoft.AspNetCore.Hosting.Diagnostics || Request finished "HTTP/1.1" "GET" "http"://"localhost:5000""""/openapi/v1.json""" - 200 null "application/json;charset=utf-8" 282.3348ms ||  ||end 
+2025-06-14 14:06:26.353 +08:00 || Information || Microsoft.AspNetCore.Hosting.Diagnostics || Request starting "HTTP/1.1" "POST" "http"://"localhost:5000""""/api/MQ/ComposePutAndGetMsgks""" - "application/json" 88 ||  ||end 
+2025-06-14 14:06:26.357 +08:00 || Information || Microsoft.AspNetCore.Routing.EndpointMiddleware || Executing endpoint '"MQWebApplication.Controllers.MQController.ComposePutAndGetMsgks (MQWebApplication)"' ||  ||end 
+2025-06-14 14:06:26.400 +08:00 || Information || Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker || Route matched with "{action = \"ComposePutAndGetMsgks\", controller = \"MQ\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult ComposePutAndGetMsgks(MQWebApplication.Models.PutMsgDto)" on controller "MQWebApplication.Controllers.MQController" ("MQWebApplication"). ||  ||end 
+2025-06-14 14:06:26.774 +08:00 || Information || Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker || Executed action "MQWebApplication.Controllers.MQController.ComposePutAndGetMsgks (MQWebApplication)" in 367.2644ms ||  ||end 
+2025-06-14 14:06:26.777 +08:00 || Information || Microsoft.AspNetCore.Routing.EndpointMiddleware || Executed endpoint '"MQWebApplication.Controllers.MQController.ComposePutAndGetMsgks (MQWebApplication)"' ||  ||end 
+2025-06-14 14:06:26.778 +08:00 || Error || Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware || An unhandled exception has occurred while executing the request. || System.NullReferenceException: Object reference not set to an instance of an object.
+   at MQWebApplication.Controllers.MQController.ComposePutAndGetMsgks(PutMsgDto data) in D:\客户源码--余开明\私单\江西附属医院\MQWebApplication\MQWebApplication\Controllers\MQController.cs:line 80
+   at lambda_method1(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+ ||end 
+2025-06-14 14:06:26.809 +08:00 || Information || Microsoft.AspNetCore.Hosting.Diagnostics || Request finished "HTTP/1.1" "POST" "http"://"localhost:5000""""/api/MQ/ComposePutAndGetMsgks""" - 500 null "text/plain; charset=utf-8" 455.8031ms ||  ||end 
+2025-06-14 14:06:33.204 +08:00 || Information || Microsoft.AspNetCore.Hosting.Diagnostics || Request starting "HTTP/1.1" "GET" "http"://"localhost:5000""""/favicon.ico""" - null null ||  ||end 
+2025-06-14 14:06:33.211 +08:00 || Information || Microsoft.AspNetCore.Hosting.Diagnostics || Request finished "HTTP/1.1" "GET" "http"://"localhost:5000""""/favicon.ico""" - 404 0 null 7.1945ms ||  ||end 
+2025-06-14 14:06:33.217 +08:00 || Information || Microsoft.AspNetCore.Hosting.Diagnostics || Request reached the end of the middleware pipeline without being handled by application code. Request path: "GET" "http"://"localhost:5000""""/favicon.ico", Response status code: 404 ||  ||end 
+2025-06-14 14:07:16.381 +08:00 || Information || Microsoft.Hosting.Lifetime || Application is shutting down... ||  ||end 
+2025-06-14 14:07:19.834 +08:00 || Information ||  || 服务启动："Services Starting..." ||  ||end 
+2025-06-14 14:07:19.883 +08:00 || Information ||  || 运行环境: "MQ接口服务正在运行!!! 请勿随意关闭接口服务，避免造成数据丢失!!! Powered by .NET 9.0.6 强力驱动 on Kestrel" ||  ||end 
+2025-06-14 14:07:20.018 +08:00 || Warning || Microsoft.AspNetCore.Server.Kestrel || Overriding address(es) '"http://localhost:5016"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead. ||  ||end 
+2025-06-14 14:07:20.039 +08:00 || Information || Microsoft.Hosting.Lifetime || Now listening on: "http://[::]:5000" ||  ||end 
+2025-06-14 14:07:20.040 +08:00 || Information || Microsoft.Hosting.Lifetime || Application started. Press Ctrl+C to shut down. ||  ||end 
+2025-06-14 14:07:20.041 +08:00 || Information || Microsoft.Hosting.Lifetime || Hosting environment: "Development" ||  ||end 
+2025-06-14 14:07:20.042 +08:00 || Information || Microsoft.Hosting.Lifetime || Content root path: "D:\客户源码--余开明\私单\江西附属医院\MQWebApplication\MQWebApplication" ||  ||end 
+2025-06-14 14:07:47.461 +08:00 || Information || Microsoft.AspNetCore.Hosting.Diagnostics || Request starting "HTTP/1.1" "POST" "http"://"localhost:5000""""/api/MQ/ComposePutAndGetMsgks""" - "application/json" 88 ||  ||end 
+2025-06-14 14:07:47.480 +08:00 || Warning || Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware || Failed to determine the https port for redirect. ||  ||end 
+2025-06-14 14:07:47.483 +08:00 || Information || Microsoft.AspNetCore.Routing.EndpointMiddleware || Executing endpoint '"MQWebApplication.Controllers.MQController.ComposePutAndGetMsgks (MQWebApplication)"' ||  ||end 
+2025-06-14 14:07:47.504 +08:00 || Information || Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker || Route matched with "{action = \"ComposePutAndGetMsgks\", controller = \"MQ\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult ComposePutAndGetMsgks(MQWebApplication.Models.PutMsgDto)" on controller "MQWebApplication.Controllers.MQController" ("MQWebApplication"). ||  ||end 
+2025-06-14 14:07:47.682 +08:00 || Information || Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker || Executed action "MQWebApplication.Controllers.MQController.ComposePutAndGetMsgks (MQWebApplication)" in 173.1503ms ||  ||end 
+2025-06-14 14:07:47.693 +08:00 || Information || Microsoft.AspNetCore.Routing.EndpointMiddleware || Executed endpoint '"MQWebApplication.Controllers.MQController.ComposePutAndGetMsgks (MQWebApplication)"' ||  ||end 
+2025-06-14 14:07:47.695 +08:00 || Error || Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware || An unhandled exception has occurred while executing the request. || System.NullReferenceException: Object reference not set to an instance of an object.
+   at MQWebApplication.Controllers.MQController.ComposePutAndGetMsgks(PutMsgDto data) in D:\客户源码--余开明\私单\江西附属医院\MQWebApplication\MQWebApplication\Controllers\MQController.cs:line 80
+   at lambda_method1(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+ ||end 
+2025-06-14 14:07:47.711 +08:00 || Information || Microsoft.AspNetCore.Hosting.Diagnostics || Request finished "HTTP/1.1" "POST" "http"://"localhost:5000""""/api/MQ/ComposePutAndGetMsgks""" - 500 null "text/plain; charset=utf-8" 251.3135ms ||  ||end 
+2025-06-14 14:07:55.086 +08:00 || Information || Microsoft.Hosting.Lifetime || Application is shutting down... ||  ||end 
+2025-06-14 14:08:05.844 +08:00 || Information ||  || 服务启动："Services Starting..." ||  ||end 
+2025-06-14 14:08:05.886 +08:00 || Information ||  || 运行环境: "MQ接口服务正在运行!!! 请勿随意关闭接口服务，避免造成数据丢失!!! Powered by .NET 9.0.6 强力驱动 on Kestrel" ||  ||end 
+2025-06-14 14:08:06.277 +08:00 || Warning || Microsoft.AspNetCore.Server.Kestrel || Overriding address(es) '"http://localhost:5016"'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead. ||  ||end 
+2025-06-14 14:08:06.301 +08:00 || Information || Microsoft.Hosting.Lifetime || Now listening on: "http://[::]:5000" ||  ||end 
+2025-06-14 14:08:06.302 +08:00 || Information || Microsoft.Hosting.Lifetime || Application started. Press Ctrl+C to shut down. ||  ||end 
+2025-06-14 14:08:06.303 +08:00 || Information || Microsoft.Hosting.Lifetime || Hosting environment: "Development" ||  ||end 
+2025-06-14 14:08:06.304 +08:00 || Information || Microsoft.Hosting.Lifetime || Content root path: "D:\客户源码--余开明\私单\江西附属医院\MQWebApplication\MQWebApplication" ||  ||end 
+2025-06-14 14:08:14.091 +08:00 || Information || Microsoft.AspNetCore.Hosting.Diagnostics || Request starting "HTTP/1.1" "POST" "http"://"localhost:5000""""/api/MQ/ComposePutAndGetMsgks""" - "application/json" 88 ||  ||end 
+2025-06-14 14:08:14.137 +08:00 || Warning || Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware || Failed to determine the https port for redirect. ||  ||end 
+2025-06-14 14:08:14.142 +08:00 || Information || Microsoft.AspNetCore.Routing.EndpointMiddleware || Executing endpoint '"MQWebApplication.Controllers.MQController.ComposePutAndGetMsgks (MQWebApplication)"' ||  ||end 
+2025-06-14 14:08:14.177 +08:00 || Information || Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker || Route matched with "{action = \"ComposePutAndGetMsgks\", controller = \"MQ\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult ComposePutAndGetMsgks(MQWebApplication.Models.PutMsgDto)" on controller "MQWebApplication.Controllers.MQController" ("MQWebApplication"). ||  ||end 
