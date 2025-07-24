@@ -35,8 +35,8 @@ builder.Services.AddSingleton(new SqlServerDatabase(builder.Configuration.GetCon
 ////服务依赖注册
 builder.Services.AddTransient<IQueryHelperSqlserver, QueryHelperSqlserver>();
 builder.Services.AddTransient<IGetxml, Getxml.ESBXmlGenerator>();
-// builder.Services.AddHostedService<DailyMqTaskService>();
-// builder.Services.AddScoped<MQController>(); // 注册控制器以便依赖注入
+builder.Services.AddHostedService<DailyMqTaskService>();
+builder.Services.AddScoped<MQController>(); // 注册控制器以便依赖注入
 
 //首先初始化 Serilog 的缺点是，来自 ASP.NET Core 主机的服务（包括配置和依赖项注入）尚不可用。appsettings.json
 //为了解决这个问题，Serilog 支持两阶段初始化。初始“引导”记录器在程序启动时立即配置，一旦主机加载，该记录器将被完全配置的记录器取代。

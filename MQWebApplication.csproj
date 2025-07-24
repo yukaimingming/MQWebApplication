@@ -4,25 +4,24 @@
         <TargetFramework>net9.0</TargetFramework>
         <Nullable>enable</Nullable>
         <!--压缩打包-->
-        <!--        <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>-->
+        <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
         <OutputType>Exe</OutputType>
         <ImplicitUsings>enable</ImplicitUsings>
         <RuntimeIdentifier>win-x64</RuntimeIdentifier>
 
-        <!-- 发布为单文件、包含运行时 -->
-        <!--        <PublishSingleFile>true</PublishSingleFile>-->
+        <PublishSingleFile>true</PublishSingleFile>
         <SelfContained>true</SelfContained>
-        <!-- 2. 让原生库也嵌入并在启动时解压 -->
+        <!--        &lt;!&ndash; 2. 让原生库也嵌入并在启动时解压 &ndash;&gt;-->
         <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.5"/>
-        <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.0-preview1.25120.4"/>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
-        <PackageReference Include="Scalar.AspNetCore" Version="2.3.1"/>
-        <PackageReference Include="Serilog.AspNetCore" Version="9.0.0"/>
-        <PackageReference Include="System.Data.SqlClient" Version="4.9.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.5" />
+        <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.0-preview1.25120.4" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="Scalar.AspNetCore" Version="2.3.1" />
+        <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
+        <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
     </ItemGroup>
     <ItemGroup>
         <Reference Include="MQSDK">
@@ -36,6 +35,6 @@
         </Content>
     </ItemGroup>
     <ItemGroup>
-        <Folder Include="logs\"/>
+        <Folder Include="logs\" />
     </ItemGroup>
 </Project>
