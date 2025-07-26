@@ -401,7 +401,7 @@ public class Getxml
                         Email = staff.Email!,
                         EducationName = staff.EducationName!,
                         EducationCode = staff.EducationCode!,
-                        DateBirth = staff.DateBirth!, // 示例 "1990/05/15"
+                        DateBirth =Convert.ToDateTime(staff.DateBirth!), // 示例 "1990/05/15"
                         CurrAddr = staff.CurrAddr!,
                         CreateUser = staff.CreateUser!,
                         CreateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")

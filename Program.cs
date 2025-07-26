@@ -1,28 +1,28 @@
-using MQWebApplication.DBhelpler;
+ï»¿using MQWebApplication.DBhelpler;
 using Scalar.AspNetCore;
 using Serilog;
 using System.Runtime.InteropServices;
 using MQWebApplication;
 using MQWebApplication.Controllers;
 
-//serilog³õÊ¼»¯ÉèÖÃ
+//serilogåˆå§‹åŒ–è®¾ç½®
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Debug()
     .WriteTo.Console()
     .CreateBootstrapLogger();
 
 var builder = WebApplication.CreateBuilder(args);
-// È·±£ MQSDK ÄÜÕÒµ½ÅäÖÃÎÄ¼ş
+// ç¡®ä¿ MQSDK èƒ½æ‰¾åˆ°é…ç½®æ–‡ä»¶
 var baseDir = AppDomain.CurrentDomain.BaseDirectory;
 var configPath = Path.Combine(baseDir, "SDKConfig.properties");
 
-// È·±£ MQSDK.dll ´æÔÚ
+// ç¡®ä¿ MQSDK.dll å­˜åœ¨
 var dllPath = Path.Combine(baseDir, "MQSDK.dll");
-if (!File.Exists(dllPath)) throw new FileNotFoundException($"MQSDK.dll ÎÄ¼ş²»´æÔÚ: {dllPath}");
+if (!File.Exists(dllPath)) throw new FileNotFoundException($"MQSDK.dll æ–‡ä»¶ä¸å­˜åœ¨: {dllPath}");
 
 
-// ¼ì²éÅäÖÃÎÄ¼şÊÇ·ñ´æÔÚ
-if (!File.Exists(configPath)) throw new FileNotFoundException($"MQSDKÅäÖÃÎÄ¼ş²»´æÔÚ: {configPath}");
+// æ£€æŸ¥é…ç½®æ–‡ä»¶æ˜¯å¦å­˜åœ¨
+if (!File.Exists(configPath)) throw new FileNotFoundException($"MQSDKé…ç½®æ–‡ä»¶ä¸å­˜åœ¨: {configPath}");
 // Add services to the container.
 Console.WriteLine($"Base Directory: {AppContext.BaseDirectory}");
 Console.WriteLine($"DLL Path: {Path.Combine(AppContext.BaseDirectory, "MQSDK.dll")}");
@@ -30,16 +30,16 @@ Console.WriteLine($"Config Path: {Path.Combine(AppContext.BaseDirectory, "SDKCon
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
-//Êı¾İ¿â·şÎñ×¢²á
+//æ•°æ®åº“æœåŠ¡æ³¨å†Œ
 builder.Services.AddSingleton(new SqlServerDatabase(builder.Configuration.GetConnectionString("connect_his")!));
-////·şÎñÒÀÀµ×¢²á
+////æœåŠ¡ä¾èµ–æ³¨å†Œ
 builder.Services.AddTransient<IQueryHelperSqlserver, QueryHelperSqlserver>();
 builder.Services.AddTransient<IGetxml, Getxml.ESBXmlGenerator>();
 builder.Services.AddHostedService<DailyMqTaskService>();
-builder.Services.AddScoped<MQController>(); // ×¢²á¿ØÖÆÆ÷ÒÔ±ãÒÀÀµ×¢Èë
+builder.Services.AddScoped<MQController>(); // æ³¨å†Œæ§åˆ¶å™¨ä»¥ä¾¿ä¾èµ–æ³¨å…¥
 
-//Ê×ÏÈ³õÊ¼»¯ Serilog µÄÈ±µãÊÇ£¬À´×Ô ASP.NET Core Ö÷»úµÄ·şÎñ£¨°üÀ¨ÅäÖÃºÍÒÀÀµÏî×¢Èë£©ÉĞ²»¿ÉÓÃ¡£appsettings.json
-//ÎªÁË½â¾öÕâ¸öÎÊÌâ£¬Serilog Ö§³ÖÁ½½×¶Î³õÊ¼»¯¡£³õÊ¼¡°Òıµ¼¡±¼ÇÂ¼Æ÷ÔÚ³ÌĞòÆô¶¯Ê±Á¢¼´ÅäÖÃ£¬Ò»µ©Ö÷»ú¼ÓÔØ£¬¸Ã¼ÇÂ¼Æ÷½«±»ÍêÈ«ÅäÖÃµÄ¼ÇÂ¼Æ÷È¡´ú¡£
+//é¦–å…ˆåˆå§‹åŒ– Serilog çš„ç¼ºç‚¹æ˜¯ï¼Œæ¥è‡ª ASP.NET Core ä¸»æœºçš„æœåŠ¡ï¼ˆåŒ…æ‹¬é…ç½®å’Œä¾èµ–é¡¹æ³¨å…¥ï¼‰å°šä¸å¯ç”¨ã€‚appsettings.json
+//ä¸ºäº†è§£å†³è¿™ä¸ªé—®é¢˜ï¼ŒSerilog æ”¯æŒä¸¤é˜¶æ®µåˆå§‹åŒ–ã€‚åˆå§‹â€œå¼•å¯¼â€è®°å½•å™¨åœ¨ç¨‹åºå¯åŠ¨æ—¶ç«‹å³é…ç½®ï¼Œä¸€æ—¦ä¸»æœºåŠ è½½ï¼Œè¯¥è®°å½•å™¨å°†è¢«å®Œå…¨é…ç½®çš„è®°å½•å™¨å–ä»£ã€‚
 builder.Host.UseSerilog((context, services, configuration) => configuration
     .ReadFrom.Configuration(context.Configuration)
     .ReadFrom.Services(services)
@@ -51,9 +51,8 @@ builder.Host.UseSerilog((context, services, configuration) => configuration
 
 
 var app = builder.Build();
-Log.Information("·şÎñÆô¶¯£º{0}", "Services Starting...");
-Log.Information("ÔËĞĞ»·¾³: {0}",
-    $"MQ½Ó¿Ú·şÎñÕıÔÚÔËĞĞ!!! ÇëÎğËæÒâ¹Ø±Õ½Ó¿Ú·şÎñ£¬±ÜÃâÔì³ÉÊı¾İ¶ªÊ§!!! Powered by {RuntimeInformation.FrameworkDescription} Ç¿Á¦Çı¶¯ on Kestrel");
+Log.Information("æœåŠ¡å¯åŠ¨:Services Starting...");
+Log.Information($"è¿è¡Œç¯å¢ƒ:MQæ¥å£æœåŠ¡æ­£åœ¨è¿è¡Œ!!! è¯·å‹¿éšæ„å…³é—­æ¥å£æœåŠ¡ï¼Œé¿å…é€ æˆæ•°æ®ä¸¢å¤±!!! Powered by {RuntimeInformation.FrameworkDescription} å¼ºåŠ›é©±åŠ¨ on Kestrel");
 
 app.MapOpenApi();
 // Configure the HTTP request pipeline.

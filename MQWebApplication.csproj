@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
@@ -13,6 +13,7 @@
         <SelfContained>true</SelfContained>
         <!--        &lt;!&ndash; 2. 让原生库也嵌入并在启动时解压 &ndash;&gt;-->
         <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+        <ServerGarbageCollection>true</ServerGarbageCollection><!-- 启用服务器垃圾回收 -->
     </PropertyGroup>
 
     <ItemGroup>

@@ -55,28 +55,28 @@ public class MQController : ControllerBase
         // 转换为 List<Department>
         //var query = null as List<Department>;
         var query = (from row in ds.Tables[0]!.AsEnumerable()
-            select new Department //  
-            {
-                WubiCode = row.Field<string>("WUBI_CODE"),
-                UpdateUser = row.Field<string>("UPDATE_USER"),
-                UpdateTime = row.Field<DateTime?>("UPDATE_TIME"),
-                UpdateFlag = row.Field<string>("UPDATE_FLAG"),
-                SuperiorDeptName = row.Field<string>("SUPERIOR_DEPT_NAME"),
-                SuperiorDeptCode = row.Field<string>("SUPERIOR_DEPT_CODE"),
-                SuborHospitalDistrict = row.Field<string>("SUBOR_HOSPITAL_DISTRICT"),
-                RecordDate = row.Field<string>("RECORD_DATE"),
-                PinyinCode = row.Field<string>("PINYIN_CODE"),
-                OiDeptFlag = row.Field<string>("OI_DEPT_FLAG"),
-                MsDeptFlag = row.Field<string>("MS_DEPT_FLAG"),
-                DeptCategCode = row.Field<string>("DEPT_CATEG_CODE"),
-                DeptCategName = row.Field<string>("DEPT_CATEG_NAME"),
-                Location = row.Field<string>("LOCATION"),
-                ClinicDeptFlag = row.Field<string>("CLINIC_DEPT_FLAG"),
-                DeptCode = row.Field<string>("DEPT_CODE"),
-                DeptName = row.Field<string>("DEPT_NAME"),
-                InvalidFlag = row.Field<string>("INVALID_FLAG"),
-                IsWard = row.Field<string>("IS_WARD")
-            }).ToList();
+                     select new Department //  
+                     {
+                         WubiCode = row.Field<string>("WUBI_CODE"),
+                         UpdateUser = row.Field<string>("UPDATE_USER"),
+                         UpdateTime = row.Field<DateTime?>("UPDATE_TIME"),
+                         UpdateFlag = row.Field<string>("UPDATE_FLAG"),
+                         SuperiorDeptName = row.Field<string>("SUPERIOR_DEPT_NAME"),
+                         SuperiorDeptCode = row.Field<string>("SUPERIOR_DEPT_CODE"),
+                         SuborHospitalDistrict = row.Field<string>("SUBOR_HOSPITAL_DISTRICT"),
+                         RecordDate = row.Field<string>("RECORD_DATE"),
+                         PinyinCode = row.Field<string>("PINYIN_CODE"),
+                         OiDeptFlag = row.Field<string>("OI_DEPT_FLAG"),
+                         MsDeptFlag = row.Field<string>("MS_DEPT_FLAG"),
+                         DeptCategCode = row.Field<string>("DEPT_CATEG_CODE"),
+                         DeptCategName = row.Field<string>("DEPT_CATEG_NAME"),
+                         Location = row.Field<string>("LOCATION"),
+                         ClinicDeptFlag = row.Field<string>("CLINIC_DEPT_FLAG"),
+                         DeptCode = row.Field<string>("DEPT_CODE"),
+                         DeptName = row.Field<string>("DEPT_NAME"),
+                         InvalidFlag = row.Field<string>("INVALID_FLAG"),
+                         IsWard = row.Field<string>("IS_WARD")
+                     }).ToList();
         _logger.LogInformation("查询的科室LIST数据" + query.Count.ToString());
         var resutls = new List<SdkResponse<GetMsgResult>>();
         foreach (var value in query)
@@ -144,28 +144,28 @@ public class MQController : ControllerBase
         // 转换为 List<Department>
         //var query = null as List<Department>;
         var query = (from row in ds.Tables[0]!.AsEnumerable()
-            select new Departments //  
-            {
-                WubiCode = row.Field<string>("WUBI_CODE"),
-                UpdateUser = row.Field<string>("UPDATE_USER"),
-                UpdateTime = row.Field<DateTime?>("UPDATE_TIME"),
-                UpdateFlag = row.Field<string>("UPDATE_FLAG"),
-                //             SuperiorDeptName = row.Field<string>("superiordeptname"),
-                //             SuperiorDeptCode = row.Field<string>("superiordeptcode"),
-                SuborHospitalDistrict = row.Field<string>("SUBOR_HOSPITAL_DISTRICT"),
-                RecordDate = row.Field<DateTime?>("RECORD_DATE"),
-                PinyinCode = row.Field<string>("PINYIN_CODE"),
-                //             OiDeptFlag = row.Field<string>("oideptflag"),
-                //             MsDeptFlag = row.Field<string>("msdeptflag"),
-                //             DeptCategCode = row.Field<string>("deptcategcode"),
-                //             DeptCategName = row.Field<string>("deptcategname"),
-                Location = row.Field<string>("LOCATION"),
-                //             ClinicDeptFlag = row.Field<string>("clinicdeptflag"),
-                DeptCode = row.Field<string>("DEPT_CODE"),
-                DeptName = row.Field<string>("DEPT_NAME"),
-                InvalidFlag = row.Field<string>("INVALID_FLAG")
-                //             IsWard = row.Field<string>("isward")
-            }).ToList();
+                     select new Departments //  
+                     {
+                         WubiCode = row.Field<string>("WUBI_CODE"),
+                         UpdateUser = row.Field<string>("UPDATE_USER"),
+                         UpdateTime = row.Field<DateTime?>("UPDATE_TIME"),
+                         UpdateFlag = row.Field<string>("UPDATE_FLAG"),
+                         //             SuperiorDeptName = row.Field<string>("superiordeptname"),
+                         //             SuperiorDeptCode = row.Field<string>("superiordeptcode"),
+                         SuborHospitalDistrict = row.Field<string>("SUBOR_HOSPITAL_DISTRICT"),
+                         RecordDate = row.Field<DateTime?>("RECORD_DATE"),
+                         PinyinCode = row.Field<string>("PINYIN_CODE"),
+                         //             OiDeptFlag = row.Field<string>("oideptflag"),
+                         //             MsDeptFlag = row.Field<string>("msdeptflag"),
+                         //             DeptCategCode = row.Field<string>("deptcategcode"),
+                         //             DeptCategName = row.Field<string>("deptcategname"),
+                         Location = row.Field<string>("LOCATION"),
+                         //             ClinicDeptFlag = row.Field<string>("clinicdeptflag"),
+                         DeptCode = row.Field<string>("DEPT_CODE"),
+                         DeptName = row.Field<string>("DEPT_NAME"),
+                         InvalidFlag = row.Field<string>("INVALID_FLAG")
+                         //             IsWard = row.Field<string>("isward")
+                     }).ToList();
         _logger.LogInformation("查询的病区LIST数据" + query.Count.ToString());
         var resutls = new List<SdkResponse<GetMsgResult>>();
         foreach (var value in query)
@@ -233,52 +233,52 @@ public class MQController : ControllerBase
         // 转换为 List<Department>
         // var query = null as List<StaffInfoDetailed>;
         var query = (from row in ds.Tables[0]!.AsEnumerable()
-            select new StaffInfoDetailed //  
-            {
-                WubiCode = row.Field<string>("WUBI_CODE"),
-                UpdateUser = row.Field<string>("UPDATE_USER"),
-                UpdateTime = row.Field<DateTime?>("UPDATE_TIME"),
-                UpdateFlag = row.Field<string>("UPDATE_FLAG"),
-                TitleLevelName = row.Field<string>("TITLE_LEVEL_NAME"),
-                TitleLevelCode = row.Field<string>("TITLE_LEVEL_CODE"),
-                SuborDeptName = row.Field<string>("SUBOR_DEPT_NAME"),
-                SuborDeptCode = row.Field<string>("SUBOR_DEPT_CODE"),
-                StaffName = row.Field<string>("STAFF_NAME"),
-                StaffCode = row.Field<string>("STAFF_CODE"),
-                StaffCategName = row.Field<string>("STAFF_CATEG_NAME"),
-                StaffCategCode = row.Field<string>("STAFF_CATEG_CODE"),
-                StaffBriefing = row.Field<string>("STAFF_BRIEFING"),
-                RoleAuthorityName = row.Field<string>("ROLE_AUTHORITY_NAME"),
-                RoleAuthorityCode = row.Field<string>("ROLE_AUTHORITY_CODE"),
-                PoliticalDesc = row.Field<string>("POLITICAL_DESC"),
-                PinyinCode = row.Field<string>("PINYIN_CODE"),
-                PhysiSexName = row.Field<string>("PHYSI_SEX_NAME"),
-                PhysiSexCode = row.Field<string>("PHYSI_SEX_CODE"),
-                PhoneNoOffice = row.Field<string>("PHONE_NO_OFFICE"),
-                PhoneNoHome = row.Field<string>("PHONE_NO_HOME"),
-                PhoneNo = row.Field<string>("PHONE_NO"),
-                NativeAddr = row.Field<string>("NATIVE_ADDR"),
-                NationName = row.Field<string>("NATION_NAME"),
-                NationCode = row.Field<string>("NATION_CODE"),
-                MaritalStatusName = row.Field<string>("MARITAL_STATUS_NAME"),
-                MaritalStatusCode = row.Field<string>("MARITAL_STATUS_CODE"),
-                MajorSkillPostName = row.Field<string>("MAJOR_SKILL_POST_NAME"),
-                MajorSkillPostCode = row.Field<string>("MAJOR_SKILL_POST_CODE"),
-                LoginPassword = row.Field<string>("LOGIN_PASSWORD"),
-                LoginName = row.Field<string>("LOGIN_NAME"),
-                InvalidFlag = row.Field<string>("INVALID_FLAG"),
-                IdNumber = row.Field<string>("ID_NUMBER"),
-                HukouAddr = row.Field<string>("HUKOU_ADDR"),
-                EthnicName = row.Field<string>("ETHNIC_NAME"),
-                EthnicCode = row.Field<string>("ETHNIC_CODE"),
-                Email = row.Field<string>("EMAIL"),
-                EducationName = row.Field<string>("EDUCATION_NAME"),
-                EducationCode = row.Field<string>("EDUCATION_CODE"),
-                DateBirth = row.Field<DateTime?>("DATE_BIRTH"),
-                CurrAddr = row.Field<string>("CURR_ADDR"),
-                CreateUser = row.Field<string>("CREATE_USER"),
-                CreateTime = row.Field<DateTime?>("CREATE_TIME")
-            }).ToList();
+                     select new StaffInfoDetailed //  
+                     {
+                         WubiCode = row.Field<string>("WUBI_CODE"),
+                         UpdateUser = row.Field<string>("UPDATE_USER"),
+                         UpdateTime = row.Field<DateTime?>("UPDATE_TIME"),
+                         UpdateFlag = row.Field<string>("UPDATE_FLAG"),
+                         TitleLevelName = row.Field<string>("TITLE_LEVEL_NAME"),
+                         TitleLevelCode = row.Field<string>("TITLE_LEVEL_CODE"),
+                         SuborDeptName = row.Field<string>("SUBOR_DEPT_NAME"),
+                         SuborDeptCode = row.Field<string>("SUBOR_DEPT_CODE"),
+                         StaffName = row.Field<string>("STAFF_NAME"),
+                         StaffCode = row.Field<string>("STAFF_CODE"),
+                         StaffCategName = row.Field<string>("STAFF_CATEG_NAME"),
+                         StaffCategCode = row.Field<string>("STAFF_CATEG_CODE"),
+                         StaffBriefing = row.Field<string>("STAFF_BRIEFING"),
+                         RoleAuthorityName = row.Field<string>("ROLE_AUTHORITY_NAME"),
+                         RoleAuthorityCode = row.Field<string>("ROLE_AUTHORITY_CODE"),
+                         PoliticalDesc = row.Field<string>("POLITICAL_DESC"),
+                         PinyinCode = row.Field<string>("PINYIN_CODE"),
+                         PhysiSexName = row.Field<string>("PHYSI_SEX_NAME"),
+                         PhysiSexCode = row.Field<string>("PHYSI_SEX_CODE"),
+                         PhoneNoOffice = row.Field<string>("PHONE_NO_OFFICE"),
+                         PhoneNoHome = row.Field<string>("PHONE_NO_HOME"),
+                         PhoneNo = row.Field<string>("PHONE_NO"),
+                         NativeAddr = row.Field<string>("NATIVE_ADDR"),
+                         NationName = row.Field<string>("NATION_NAME"),
+                         NationCode = row.Field<string>("NATION_CODE"),
+                         MaritalStatusName = row.Field<string>("MARITAL_STATUS_NAME"),
+                         MaritalStatusCode = row.Field<string>("MARITAL_STATUS_CODE"),
+                         MajorSkillPostName = row.Field<string>("MAJOR_SKILL_POST_NAME"),
+                         MajorSkillPostCode = row.Field<string>("MAJOR_SKILL_POST_CODE"),
+                         LoginPassword = row.Field<string>("LOGIN_PASSWORD"),
+                         LoginName = row.Field<string>("LOGIN_NAME"),
+                         InvalidFlag = row.Field<string>("INVALID_FLAG"),
+                         IdNumber = row.Field<string>("ID_NUMBER"),
+                         HukouAddr = row.Field<string>("HUKOU_ADDR"),
+                         EthnicName = row.Field<string>("ETHNIC_NAME"),
+                         EthnicCode = row.Field<string>("ETHNIC_CODE"),
+                         Email = row.Field<string>("EMAIL"),
+                         EducationName = row.Field<string>("EDUCATION_NAME"),
+                         EducationCode = row.Field<string>("EDUCATION_CODE"),
+                         DateBirth = row.Field<DateTime?>("DATE_BIRTH"),
+                         CurrAddr = row.Field<string>("CURR_ADDR"),
+                         CreateUser = row.Field<string>("CREATE_USER"),
+                         CreateTime = row.Field<DateTime?>("CREATE_TIME")
+                     }).ToList();
         _logger.LogInformation("查询的人员LIST数据" + query.Count.ToString());
         var resutls = new List<SdkResponse<GetMsgResult>>();
         foreach (var value in query)
