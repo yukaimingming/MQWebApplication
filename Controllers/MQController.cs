@@ -274,7 +274,7 @@ public class MQController : ControllerBase
                          Email = row.Field<string>("EMAIL"),
                          EducationName = row.Field<string>("EDUCATION_NAME"),
                          EducationCode = row.Field<string>("EDUCATION_CODE"),
-                         DateBirth = row.Field<DateTime?>("DATE_BIRTH"),
+                         DateBirth = row.Field<string?>("DATE_BIRTH"),
                          CurrAddr = row.Field<string>("CURR_ADDR"),
                          CreateUser = row.Field<string>("CREATE_USER"),
                          CreateTime = row.Field<DateTime?>("CREATE_TIME")

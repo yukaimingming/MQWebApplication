@@ -203,7 +203,7 @@ public class StaffInfoDetailed
     /// <summary>
     /// 出生日期，工作人员的出生日期，推荐格式为 yyyy/MM/dd。
     /// </summary>
-    public DateTime? DateBirth { get; set; }
+    public string? DateBirth { get; set; }
 
     /// <summary>
     /// 现住地址，工作人员当前的居住地址。
