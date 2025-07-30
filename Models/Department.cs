@@ -18,7 +18,7 @@ public class Department
     /// <summary>
     /// 更新时间
     /// </summary>
-    public DateTime? UpdateTime { get; set; }
+    public string? UpdateTime { get; set; }
 
     /// <summary>
     /// 更新标志

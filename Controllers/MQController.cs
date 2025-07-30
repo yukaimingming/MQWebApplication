@@ -59,7 +59,7 @@ public class MQController : ControllerBase
                      {
                          WubiCode = row.Field<string>("WUBI_CODE"),
                          UpdateUser = row.Field<string>("UPDATE_USER"),
-                         UpdateTime = row.Field<DateTime?>("UPDATE_TIME"),
+                         UpdateTime = row.Field<string>("UPDATE_TIME"),
                          UpdateFlag = row.Field<string>("UPDATE_FLAG"),
                          SuperiorDeptName = row.Field<string>("SUPERIOR_DEPT_NAME"),
                          SuperiorDeptCode = row.Field<string>("SUPERIOR_DEPT_CODE"),
@@ -148,12 +148,12 @@ public class MQController : ControllerBase
                      {
                          WubiCode = row.Field<string>("WUBI_CODE"),
                          UpdateUser = row.Field<string>("UPDATE_USER"),
-                         UpdateTime = row.Field<DateTime?>("UPDATE_TIME"),
+                         UpdateTime = row.Field<string>("UPDATE_TIME"),
                          UpdateFlag = row.Field<string>("UPDATE_FLAG"),
                          //             SuperiorDeptName = row.Field<string>("superiordeptname"),
                          //             SuperiorDeptCode = row.Field<string>("superiordeptcode"),
                          SuborHospitalDistrict = row.Field<string>("SUBOR_HOSPITAL_DISTRICT"),
-                         RecordDate = row.Field<DateTime?>("RECORD_DATE"),
+                         RecordDate = row.Field<string>("RECORD_DATE"),
                          PinyinCode = row.Field<string>("PINYIN_CODE"),
                          //             OiDeptFlag = row.Field<string>("oideptflag"),
                          //             MsDeptFlag = row.Field<string>("msdeptflag"),
@@ -237,7 +237,7 @@ public class MQController : ControllerBase
                      {
                          WubiCode = row.Field<string>("WUBI_CODE"),
                          UpdateUser = row.Field<string>("UPDATE_USER"),
-                         UpdateTime = row.Field<DateTime?>("UPDATE_TIME"),
+                         UpdateTime = row.Field<string>("UPDATE_TIME"),
                          UpdateFlag = row.Field<string>("UPDATE_FLAG"),
                          TitleLevelName = row.Field<string>("TITLE_LEVEL_NAME"),
                          TitleLevelCode = row.Field<string>("TITLE_LEVEL_CODE"),
@@ -277,7 +277,7 @@ public class MQController : ControllerBase
                          DateBirth = row.Field<string?>("DATE_BIRTH"),
                          CurrAddr = row.Field<string>("CURR_ADDR"),
                          CreateUser = row.Field<string>("CREATE_USER"),
-                         CreateTime = row.Field<DateTime?>("CREATE_TIME")
+                         CreateTime = row.Field<string>("CREATE_TIME")
                      }).ToList();
         _logger.LogInformation("查询的人员LIST数据" + query.Count.ToString());
         var resutls = new List<SdkResponse<GetMsgResult>>();

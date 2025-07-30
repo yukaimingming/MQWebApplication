@@ -18,7 +18,7 @@ public class StaffInfoDetailed
     /// <summary>
     /// 修改人时间，表示最后修改该记录的时间，推荐格式为 yyyy/MM/dd HH:mm:ss (JST)。
     /// </summary>
-    public DateTime? UpdateTime { get; set; }
+    public string? UpdateTime { get; set; }
 
     /// <summary>
     /// 更新标志，指示记录是否已更新（0 表示未更新，1 表示已更新）。
@@ -218,5 +218,5 @@ public class StaffInfoDetailed
     /// <summary>
     /// 创建时间，记录创建的时间，推荐格式为 yyyy/MM/dd HH:mm:ss (JST)。
     /// </summary>
-    public DateTime? CreateTime { get; set; }
+    public string? CreateTime { get; set; }
 }

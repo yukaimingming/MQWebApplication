@@ -300,7 +300,7 @@ public class Getxml
                         Location = department.Location!,
                         ClinicDeptFlag = department.ClinicDeptFlag!,
                         UpdateUser = department.UpdateUser!,
-                        UpdateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                        UpdateTime = department.UpdateTime,
                         IsWard = department.IsWard!,
                         UpdateFlag = department.UpdateFlag!
                     }
@@ -362,9 +362,11 @@ public class Getxml
                     Msg = new Msg
                     {
                         Id = "1",
+                        LastUpdate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                        Action = "update",
                         WubiCode = staff.WubiCode!,
                         UpdateUser = staff.UpdateUser!,
-                        UpdateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), // 当前 JST 时间，例如 "2025/05/22 21:41:00"
+                        UpdateTime = staff.UpdateTime, // 当前 JST 时间，例如 "2025/05/22 21:41:00"
                         UpdateFlag = staff.UpdateFlag,
                         TitleLevelName = staff.TitleLevelName!,
                         TitleLevelCode = staff.TitleLevelCode!,
@@ -404,7 +406,7 @@ public class Getxml
                         DateBirth = staff.DateBirth!, // 示例 "1990/05/15"
                         CurrAddr = staff.CurrAddr!,
                         CreateUser = staff.CreateUser!,
-                        CreateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+                        CreateTime = staff.CreateTime!
                     }
                     //     Msg = new Msg
                     //     {
@@ -492,7 +494,7 @@ public class Getxml
                         Action = "update",
                         WubiCode = departments.WubiCode!,
                         UpdateUser = departments.UpdateUser!,
-                        UpdateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), // 当前 JST 时间，例如 "2025/05/22 21:41:00"
+                        UpdateTime =departments.UpdateTime!, // 当前 JST 时间，例如 "2025/05/22 21:41:00"
                         UpdateFlag = departments.UpdateFlag,
                         // TitleLevelName = "主任医师",
                         //TitleLevelCode = "01",
@@ -524,7 +526,7 @@ public class Getxml
                         InvalidFlag = departments.InvalidFlag!,
                         SuborHospitalDistrict = "A",
                         Location = departments.Location!,
-                        RecordDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+                        RecordDate = departments.RecordDate!
                     }
                     // Msg = new Msg
                     // {

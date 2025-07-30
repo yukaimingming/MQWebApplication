@@ -15,7 +15,7 @@ public class Departments
     /// <summary>
     /// 更新时间
     /// </summary>
-    public DateTime? UpdateTime { get; set; }
+    public string? UpdateTime { get; set; }
 
     /// <summary>
     /// 更新标志
@@ -30,7 +30,7 @@ public class Departments
     /// <summary>
     /// 录入日期
     /// </summary>
-    public DateTime? RecordDate { get; set; }
+    public string? RecordDate { get; set; }
 
     /// <summary>
     /// 拼音码
