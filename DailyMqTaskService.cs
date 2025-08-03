@@ -103,32 +103,57 @@ public class DailyMqTaskService : BackgroundService
         // 创建一个新的依赖注入作用域
         using var scope = _serviceProvider.CreateScope();
         var controller = scope.ServiceProvider.GetRequiredService<MQController>();
-        var data = new PutMsgDto();
-
+        var ksData = new PutMsgDto();
+        var ryData = new PutMsgDto();
+        var bqData = new PutMsgDto();
         // 1. 创建一个任务列表
         var tasks = new List<Task>();
 
         // 2. 使用 Task.Run 将每个同步方法包装成一个任务，并添加到列表
         //    Task.Run 会从线程池中获取一个线程来执行你的代码
-        tasks.Add(Task.Run(() =>
+        tasks.Add(Task.Run(async () =>
+    {
+        try
         {
             _logger.LogInformation("开始推送科室信息...");
-            controller.ComposePutAndGetMsgks(data);
+            await controller.ComposePutAndGetMsgks(ksData);
             _logger.LogInformation("科室信息推送完成。");
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "科室信息推送失败");
+            throw;
+        }
+    }, stoppingToken));
+
+        tasks.Add(Task.Run(async () =>
+        {
+            try
+            {
+                _logger.LogInformation("开始推送员工信息...");
+               await controller.ComposePutAndGetMsgry(ryData);
+                _logger.LogInformation("员工信息推送完成。");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "员工信息推送失败");
+                throw;
+            }
         }, stoppingToken));
 
-        tasks.Add(Task.Run(() =>
+        tasks.Add(Task.Run(async () =>
         {
-            _logger.LogInformation("开始推送员工信息...");
-            controller.ComposePutAndGetMsgry(data);
-            _logger.LogInformation("员工信息推送完成。");
-        }, stoppingToken));
-
-        tasks.Add(Task.Run(() =>
-        {
-            _logger.LogInformation("开始推送病区信息...");
-            controller.ComposePutAndGetMsgbq(data);
-            _logger.LogInformation("病区信息推送完成。");
+            try
+            {
+                _logger.LogInformation("开始推送病区信息...");
+                await controller.ComposePutAndGetMsgbq(bqData);
+                _logger.LogInformation("病区信息推送完成。");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "病区信息推送失败");
+                throw;
+            }
         }, stoppingToken));
 
         // 3. 等待所有任务完成
