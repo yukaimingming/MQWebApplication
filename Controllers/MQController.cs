@@ -39,7 +39,7 @@ public class MQController : ControllerBase
 
     [EndpointDescription("发送科室MQ消息")]
     [HttpPost]
-    public async Task<IActionResult> ComposePutAndGetMsgks([FromBody] PutMsgDto data)
+    public IActionResult ComposePutAndGetMsgks([FromBody] PutMsgDto data)
     {
         // _logger.LogInformation("发送MQ消息:{0}", $"{JsonConvert.SerializeObject(data)}");
 #if DEBUG
@@ -116,14 +116,13 @@ public class MQController : ControllerBase
                 //data.Msg = "123";
                 _logger.LogInformation("生成科室XML消息体内容:{@data}", data.Msg);
                 _logger.LogInformation("生成科室MQ消息体内容:{@Data}", data);
-                var result = await Task.Run(() =>
-                        mqsdk.ComposePutAndGetMsg(
+                var result = mqsdk.ComposePutAndGetMsg(
                             data.QMgrName,
                             data.DataChannel,
                             data.WaitInternal,
                             data.Msg
-                        )
-                    );
+                        );
+
 
                 _logger.LogInformation("接收返回MQ消息:{@result}", result);
                 resutls.Add(result);
@@ -136,7 +135,7 @@ public class MQController : ControllerBase
 
     [EndpointDescription("发送病区MQ消息")]
     [HttpPost]
-    public async Task<IActionResult> ComposePutAndGetMsgbq([FromBody] PutMsgDto data)
+    public IActionResult ComposePutAndGetMsgbq([FromBody] PutMsgDto data)
     {
         // _logger.LogInformation("发送MQ消息:{0}", $"{JsonConvert.SerializeObject(data)}");
 #if DEBUG
@@ -211,8 +210,8 @@ public class MQController : ControllerBase
                 //data.Msg = "123";
                 _logger.LogInformation("生成病区XML消息体内容:{@data}", data.Msg);
                 _logger.LogInformation("生成病区MQ消息体内容:{@Data}", data);
-                var result = await Task.Run(() => mqsdk.ComposePutAndGetMsg(data.QMgrName, data.DataChannel, data.WaitInternal,
-                    data.Msg));
+                var result = mqsdk.ComposePutAndGetMsg(data.QMgrName, data.DataChannel, data.WaitInternal,
+                    data.Msg);
 
                 _logger.LogInformation("接收返回MQ消息:{@result}", result);
                 resutls.Add(result);
@@ -225,7 +224,7 @@ public class MQController : ControllerBase
 
     [EndpointDescription("发送人员MQ消息")]
     [HttpPost]
-    public async Task<IActionResult> ComposePutAndGetMsgry([FromBody] PutMsgDto data)
+    public IActionResult ComposePutAndGetMsgry([FromBody] PutMsgDto data)
     {
         // _logger.LogInformation("发送MQ消息:{0}", $"{JsonConvert.SerializeObject(data)}");
 #if DEBUG
@@ -347,8 +346,8 @@ public class MQController : ControllerBase
                 //data.Msg = "123";
                 _logger.LogInformation("生成员工XML消息体内容:{@data}", data.Msg);
                 _logger.LogInformation("生成员工MQ消息体内容:{@Data}", data);
-                var result = await Task.Run(() => mqsdk.ComposePutAndGetMsg(data.QMgrName, data.DataChannel, data.WaitInternal,
-                    data.Msg));
+                var result = mqsdk.ComposePutAndGetMsg(data.QMgrName, data.DataChannel, data.WaitInternal,
+                    data.Msg);
 
                 _logger.LogInformation("接收返回MQ消息:{@result}", result);
                 resutls.Add(result);

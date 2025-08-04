@@ -41,7 +41,19 @@ public partial class QueryHelperSqlserver : IQueryHelperSqlserver
 
     public DataSet QueryDataSetSql(string sql)
     {
-        var command = _dbServerDatabase.CreateCommand();
+        // var command = _dbServerDatabase.CreateCommand();
+        // command.CommandText = sql;
+        // var adapter = new SqlDataAdapter(command);
+        // var ds = new DataSet();
+        // adapter.Fill(ds);
+        // return ds;
+        // *** 关键改动 ***
+        // 每次查询都创建一个新的连接和命令。
+        // using 语句确保它们在使用后被正确关闭和释放，
+        // 即使发生异常也是如此。
+        using var connection = _dbServerDatabase.CreateAndOpenConnection();
+        using var command = connection.CreateCommand();
+
         command.CommandText = sql;
         var adapter = new SqlDataAdapter(command);
         var ds = new DataSet();
@@ -52,40 +64,72 @@ public partial class QueryHelperSqlserver : IQueryHelperSqlserver
     #endregion Methods
 }
 
-public class SqlServerDatabase : IDisposable
+// MQWebApplication/DBhelpler/SqlServerDatabase.cs
+
+/// <summary>
+/// 这个类现在只负责持有连接字符串。
+/// </summary>
+public class SqlServerDatabase
 {
-    #region Fields
-
-    private SqlConnection _connection;
-
-    #endregion Fields
-
-    #region Constructors
+    public string ConnectionString { get; }
 
     public SqlServerDatabase(string connectionString)
     {
-        _connection = new SqlConnection(connectionString);
-        _connection.Open();
+        if (string.IsNullOrWhiteSpace(connectionString))
+        {
+            throw new ArgumentNullException(nameof(connectionString));
+        }
+        ConnectionString = connectionString;
     }
 
-    #endregion Constructors
-
-    #region Methods
-
-    public SqlCommand CreateCommand()
+    /// <summary>
+    /// 提供一个工厂方法来创建和打开一个新的连接。
+    /// 这可以确保每次操作都使用新的连接。
+    /// </summary>
+    public SqlConnection CreateAndOpenConnection()
     {
-        var cmd = _connection.CreateCommand();
-        return cmd;
+        var connection = new SqlConnection(ConnectionString);
+        connection.Open();
+        return connection;
     }
-
-    public void Dispose()
-    {
-        _connection.Close();
-        _connection.Dispose();
-    }
-
-    #endregion Methods
 }
+
+
+
+// public class SqlServerDatabase : IDisposable
+// {
+//     #region Fields
+
+//     private SqlConnection _connection;
+
+//     #endregion Fields
+
+//     #region Constructors
+
+//     public SqlServerDatabase(string connectionString)
+//     {
+//         _connection = new SqlConnection(connectionString);
+//         _connection.Open();
+//     }
+
+//     #endregion Constructors
+
+//     #region Methods
+
+//     public SqlCommand CreateCommand()
+//     {
+//         var cmd = _connection.CreateCommand();
+//         return cmd;
+//     }
+
+//     public void Dispose()
+//     {
+//         _connection.Close();
+//         _connection.Dispose();
+//     }
+
+//     #endregion Methods
+// }
 
 //public class Startup
 //{

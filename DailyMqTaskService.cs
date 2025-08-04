@@ -100,23 +100,24 @@ public class DailyMqTaskService : BackgroundService
 
     private async Task ExecuteConcurrentTasks(CancellationToken stoppingToken)
     {
-        // 创建一个新的依赖注入作用域
-        using var scope = _serviceProvider.CreateScope();
-        var controller = scope.ServiceProvider.GetRequiredService<MQController>();
-        var ksData = new PutMsgDto();
-        var ryData = new PutMsgDto();
-        var bqData = new PutMsgDto();
+
+        // var ksData = new PutMsgDto();
+        // var ryData = new PutMsgDto();
+        // var bqData = new PutMsgDto();
         // 1. 创建一个任务列表
         var tasks = new List<Task>();
 
         // 2. 使用 Task.Run 将每个同步方法包装成一个任务，并添加到列表
         //    Task.Run 会从线程池中获取一个线程来执行你的代码
-        tasks.Add(Task.Run(async () =>
+        tasks.Add(Task.Run(() =>
     {
         try
         {
+            // 创建一个新的依赖注入作用域
+            using var scope = _serviceProvider.CreateScope();
+            var controller = scope.ServiceProvider.GetRequiredService<MQController>();
             _logger.LogInformation("开始推送科室信息...");
-            await controller.ComposePutAndGetMsgks(ksData);
+            controller.ComposePutAndGetMsgks(new PutMsgDto());
             _logger.LogInformation("科室信息推送完成。");
         }
         catch (Exception ex)
@@ -126,12 +127,15 @@ public class DailyMqTaskService : BackgroundService
         }
     }, stoppingToken));
 
-        tasks.Add(Task.Run(async () =>
+        tasks.Add(Task.Run(() =>
         {
             try
             {
+                // 创建一个新的依赖注入作用域
+                using var scope = _serviceProvider.CreateScope();
+                var controller = scope.ServiceProvider.GetRequiredService<MQController>();
                 _logger.LogInformation("开始推送员工信息...");
-               await controller.ComposePutAndGetMsgry(ryData);
+                controller.ComposePutAndGetMsgry(new PutMsgDto());
                 _logger.LogInformation("员工信息推送完成。");
             }
             catch (Exception ex)
@@ -141,12 +145,15 @@ public class DailyMqTaskService : BackgroundService
             }
         }, stoppingToken));
 
-        tasks.Add(Task.Run(async () =>
+        tasks.Add(Task.Run(() =>
         {
             try
             {
+                // 创建一个新的依赖注入作用域
+                using var scope = _serviceProvider.CreateScope();
+                var controller = scope.ServiceProvider.GetRequiredService<MQController>();
                 _logger.LogInformation("开始推送病区信息...");
-                await controller.ComposePutAndGetMsgbq(bqData);
+                controller.ComposePutAndGetMsgbq(new PutMsgDto());
                 _logger.LogInformation("病区信息推送完成。");
             }
             catch (Exception ex)
