@@ -283,7 +283,8 @@ public class MQController : ControllerBase
                          DateBirth = row.Field<string?>("DATE_BIRTH"),
                          CurrAddr = row.Field<string>("CURR_ADDR"),
                          CreateUser = row.Field<string>("CREATE_USER"),
-                         CreateTime = row.Field<string>("CREATE_TIME")
+                         CreateTime = row.Field<string>("CREATE_TIME"),
+                         yb_code = row.Field<string>("YB_CODE")
                      }).ToList();
         _logger.LogInformation("查询的人员LIST数据" + query.Count.ToString());
         var resutls = new List<SdkResponse<GetMsgResult>>();

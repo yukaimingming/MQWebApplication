@@ -208,10 +208,31 @@ public class Getxml
         [XmlElement("CREATE_USER")] public string? CreateUser { get; set; }
 
         [XmlElement("CREATE_TIME")] public string? CreateTime { get; set; }
+        [XmlElement("YB_CODE")] public string? YbCode { get; set; }
+
     }
 
     public class ESBXmlGenerator : IGetxml
     {
+
+        #region Fields
+
+        private readonly IConfiguration? _configuration;
+
+        #endregion Fields
+
+        #region Constructors
+
+        public ESBXmlGenerator(IConfiguration configuration)
+        {
+            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+        }
+
+        #endregion Constructors
+
+
+
+
         // 生成 XML 的方法
         public string GenerateESBXml(ESBEntry entry)
         {
@@ -260,7 +281,7 @@ public class Getxml
                 {
                     SysFlag = 1,
                     UserName = "rsgl",
-                    Password = "rsgl",
+                    Password = _configuration!["password"],
                     Fid = "PS02004",
                     OrderNo = "PS02004S01001"
                 },
@@ -269,7 +290,7 @@ public class Getxml
                     OrderNo = "PS02004S01001",
                     Fid = "PS02004",
                     SourceSysCode = "S27",
-                    ReturnFlag = -1,
+                    ReturnFlag = int.Parse(_configuration!["returnFlag"]!),
                     HospCode = "GH01",
                     TargetSysCode = "S00",
                     MsgDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
@@ -342,7 +363,7 @@ public class Getxml
                 {
                     SysFlag = 1,
                     UserName = "rsgl",
-                    Password = "rsgl",
+                    Password = _configuration!["password"]!,
                     Fid = "PS02005",
                     OrderNo = "PS02005S01001"
                 },
@@ -351,7 +372,7 @@ public class Getxml
                     OrderNo = "PS02005S01001",
                     Fid = "PS02005",
                     SourceSysCode = "S27",
-                    ReturnFlag = -1,
+                    ReturnFlag = int.Parse(_configuration!["returnFlag"]!),
                     HospCode = "GH01",
                     TargetSysCode = "S00",
                     MsgDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
@@ -406,7 +427,8 @@ public class Getxml
                         DateBirth = staff.DateBirth!, // 示例 "1990/05/15"
                         CurrAddr = staff.CurrAddr!,
                         CreateUser = staff.CreateUser!,
-                        CreateTime = staff.CreateTime!
+                        CreateTime = staff.CreateTime!,
+                        YbCode = staff.yb_code!,
                     }
                     //     Msg = new Msg
                     //     {
@@ -470,7 +492,7 @@ public class Getxml
                 {
                     SysFlag = 1,
                     UserName = "rsgl",
-                    Password = "rsgl",
+                    Password = _configuration!["password"]!,
                     Fid = "PS02009",
                     OrderNo = "PS02009S01001"
                 },
@@ -479,7 +501,7 @@ public class Getxml
                     OrderNo = "PS02009S01001",
                     Fid = "PS02009",
                     SourceSysCode = "S27",
-                    ReturnFlag = -1,
+                    ReturnFlag = int.Parse(_configuration!["returnFlag"]!),
                     HospCode = "GH01",
                     TargetSysCode = "S00",
                     MsgDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
@@ -494,7 +516,7 @@ public class Getxml
                         Action = "update",
                         WubiCode = departments.WubiCode!,
                         UpdateUser = departments.UpdateUser!,
-                        UpdateTime =departments.UpdateTime!, // 当前 JST 时间，例如 "2025/05/22 21:41:00"
+                        UpdateTime = departments.UpdateTime!, // 当前 JST 时间，例如 "2025/05/22 21:41:00"
                         UpdateFlag = departments.UpdateFlag,
                         // TitleLevelName = "主任医师",
                         //TitleLevelCode = "01",

@@ -219,4 +219,9 @@ public class StaffInfoDetailed
     /// 创建时间，记录创建的时间，推荐格式为 yyyy/MM/dd HH:mm:ss (JST)。
     /// </summary>
     public string? CreateTime { get; set; }
+
+    /// <summary>
+    /// 医保编码，工作人员的医保编码。
+    /// </summary>
+    public string? yb_code { get; set; }
 }
