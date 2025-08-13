@@ -57,7 +57,7 @@ public class DailyMqTaskService : BackgroundService
         //     }
 
         // _logger.LogInformation("Daily Concurrent MQ Task Service is stopping.");
-        _logger.LogInformation("定时任务服务正在启动...");
+        _logger.LogInformation("🚀 定时任务服务正在启动...");
 
         while (!stoppingToken.IsCancellationRequested)
             try
@@ -73,16 +73,16 @@ public class DailyMqTaskService : BackgroundService
                 // 计算需要延迟的时间
                 var delay = nextRunTime - now;
 
-                _logger.LogInformation("下一次定时任务将在{runTime}执行", nextRunTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                _logger.LogInformation("🚀 下一次定时任务将在{runTime}执行", nextRunTime.ToString("yyyy-MM-dd HH:mm:ss"));
                 await Task.Delay(delay, stoppingToken);
 
-                _logger.LogInformation("开始执行定时任务，当前时间: {time}",
+                _logger.LogInformation("🚀 开始执行定时任务，当前时间: {time}",
                     DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
 
                 // 使用 Task.WhenAll 并发执行任务
                 await ExecuteConcurrentTasks(stoppingToken);
 
-                _logger.LogInformation("所有定时任务已成功完成");
+                _logger.LogInformation("✅ 所有定时任务已成功完成");
             }
             catch (TaskCanceledException)
             {
@@ -91,11 +91,11 @@ public class DailyMqTaskService : BackgroundService
             catch (Exception ex)
             {
                 // 如果 Task.WhenAll 中的任何一个任务失败，异常会在这里被捕获
-                _logger.LogError(ex, "定时任务执行过程中发生错误");
+                _logger.LogError(ex, "❌ 定时任务执行过程中发生错误");
                 await Task.Delay(TimeSpan.FromMinutes(5), stoppingToken);
             }
 
-        _logger.LogInformation("定时任务服务正在停止");
+        _logger.LogInformation("❌ 定时任务服务正在停止");
     }
 
     private async Task ExecuteConcurrentTasks(CancellationToken stoppingToken)
@@ -116,13 +116,13 @@ public class DailyMqTaskService : BackgroundService
             // 创建一个新的依赖注入作用域
             using var scope = _serviceProvider.CreateScope();
             var controller = scope.ServiceProvider.GetRequiredService<MQController>();
-            _logger.LogInformation("开始推送科室信息...");
+            _logger.LogInformation("🚀 开始推送科室信息...");
             controller.ComposePutAndGetMsgks(new PutMsgDto());
-            _logger.LogInformation("科室信息推送完成。");
+            _logger.LogInformation("✅ 科室信息推送完成。");
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "科室信息推送失败");
+            _logger.LogError(ex, "❌ 科室信息推送失败");
             throw;
         }
     }, stoppingToken));
@@ -134,13 +134,13 @@ public class DailyMqTaskService : BackgroundService
                 // 创建一个新的依赖注入作用域
                 using var scope = _serviceProvider.CreateScope();
                 var controller = scope.ServiceProvider.GetRequiredService<MQController>();
-                _logger.LogInformation("开始推送员工信息...");
+                _logger.LogInformation("🚀 开始推送员工信息...");
                 controller.ComposePutAndGetMsgry(new PutMsgDto());
                 _logger.LogInformation("员工信息推送完成。");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "员工信息推送失败");
+                _logger.LogError(ex, "❌ 员工信息推送失败");
                 throw;
             }
         }, stoppingToken));
@@ -152,13 +152,13 @@ public class DailyMqTaskService : BackgroundService
                 // 创建一个新的依赖注入作用域
                 using var scope = _serviceProvider.CreateScope();
                 var controller = scope.ServiceProvider.GetRequiredService<MQController>();
-                _logger.LogInformation("开始推送病区信息...");
+                _logger.LogInformation("🚀 开始推送病区信息...");
                 controller.ComposePutAndGetMsgbq(new PutMsgDto());
-                _logger.LogInformation("病区信息推送完成。");
+                _logger.LogInformation("✅ 病区信息推送完成。");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "病区信息推送失败");
+                _logger.LogError(ex, "❌ 病区信息推送失败");
                 throw;
             }
         }, stoppingToken));

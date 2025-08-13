@@ -4,7 +4,7 @@ using Serilog;
 using System.Runtime.InteropServices;
 using MQWebApplication;
 using MQWebApplication.Controllers;
-
+Console.OutputEncoding = System.Text.Encoding.UTF8; // 支持 Emoji
 //serilog初始化设置
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Debug()
@@ -12,21 +12,21 @@ Log.Logger = new LoggerConfiguration()
     .CreateBootstrapLogger();
 
 var builder = WebApplication.CreateBuilder(args);
-// 确保 MQSDK 能找到配置文件
-var baseDir = AppDomain.CurrentDomain.BaseDirectory;
-var configPath = Path.Combine(baseDir, "SDKConfig.properties");
+// // 确保 MQSDK 能找到配置文件
+// var baseDir = AppDomain.CurrentDomain.BaseDirectory;
+// var configPath = Path.Combine(baseDir, "SDKConfig.properties");
 
-// 确保 MQSDK.dll 存在
-var dllPath = Path.Combine(baseDir, "MQSDK.dll");
-if (!File.Exists(dllPath)) throw new FileNotFoundException($"MQSDK.dll 文件不存在: {dllPath}");
+// // 确保 MQSDK.dll 存在
+// var dllPath = Path.Combine(baseDir, "MQSDK.dll");
+// if (!File.Exists(dllPath)) throw new FileNotFoundException($"MQSDK.dll 文件不存在: {dllPath}");
 
 
-// 检查配置文件是否存在
-if (!File.Exists(configPath)) throw new FileNotFoundException($"MQSDK配置文件不存在: {configPath}");
-// Add services to the container.
-Console.WriteLine($"Base Directory: {AppContext.BaseDirectory}");
-Console.WriteLine($"DLL Path: {Path.Combine(AppContext.BaseDirectory, "MQSDK.dll")}");
-Console.WriteLine($"Config Path: {Path.Combine(AppContext.BaseDirectory, "SDKConfig.properties")}");
+// // 检查配置文件是否存在
+// if (!File.Exists(configPath)) throw new FileNotFoundException($"MQSDK配置文件不存在: {configPath}");
+// // Add services to the container.
+// Console.WriteLine($"📁 Base Directory: {AppContext.BaseDirectory}");
+// Console.WriteLine($"📁 DLL Path: {Path.Combine(AppContext.BaseDirectory, "MQSDK.dll")}");
+// Console.WriteLine($"📁 Config Path: {Path.Combine(AppContext.BaseDirectory, "SDKConfig.properties")}");
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
@@ -44,15 +44,27 @@ builder.Host.UseSerilog((context, services, configuration) => configuration
     .ReadFrom.Configuration(context.Configuration)
     .ReadFrom.Services(services)
     .Enrich.FromLogContext()
-    .WriteTo.Console()
+    .Enrich.With(new EmojiEnricher())
+    .WriteTo.Console(outputTemplate:
+        "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} || {Level} || {Emoji} {SourceContext:l} || {Message} || {Exception} ||end {NewLine}")
     .WriteTo.File($"Logs/.log", rollingInterval: RollingInterval.Day,
         outputTemplate:
-        "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} || {Level} || {SourceContext:l} || {Message} || {Exception} ||end {NewLine}"));
+        "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} || {Level} || {Emoji} {SourceContext:l} || {Message} || {Exception} ||end {NewLine}"));
 
-
+string banner = @"
+  ____   ___ _____ _   _ _______ 
+ |  _ \ / _ \_   _| \ | | ____\ \
+ | | | | | | || | |  \| |  _|  \ \
+ | |_| | |_| || | | |\  | |___  / /
+ |____/ \___/ |_| |_| \_|_____/ /_/
+";
 var app = builder.Build();
-Log.Information("服务启动:Services Starting...");
-Log.Information($"运行环境:MQ接口服务正在运行!!! 请勿随意关闭接口服务，避免造成数据丢失!!! Powered by {RuntimeInformation.FrameworkDescription} 强力驱动 on Kestrel");
+Console.OutputEncoding = System.Text.Encoding.UTF8;
+Console.ForegroundColor = ConsoleColor.Cyan;
+Console.WriteLine(banner);
+Console.ResetColor();
+Log.Information("🚀 服务启动:Services Starting...🔄 ");
+Log.Information($"🚀 运行环境:MQ接口服务正在运行!!! 请勿随意关闭接口服务，避免造成数据丢失!!! Powered by {RuntimeInformation.FrameworkDescription} 强力驱动 on Kestrel 🎉");
 
 app.MapOpenApi();
 // Configure the HTTP request pipeline.
