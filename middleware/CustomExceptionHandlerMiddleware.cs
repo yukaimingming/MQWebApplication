@@ -1,7 +1,7 @@
 using MQWebApplication.Models;
 using Newtonsoft.Json;
 
-namespace PrescriptionFlowInterface.middleware
+namespace MQWebApplication.middleware
 {
     public class CustomExceptionHandlerMiddleware
     {

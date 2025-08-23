@@ -4,7 +4,7 @@ using Serilog;
 using System.Runtime.InteropServices;
 using MQWebApplication;
 using MQWebApplication.Controllers;
-using PrescriptionFlowInterface.middleware;
+using MQWebApplication.middleware;
 Console.OutputEncoding = System.Text.Encoding.UTF8; // 支持 Emoji
 //serilog初始化设置
 Log.Logger = new LoggerConfiguration()
