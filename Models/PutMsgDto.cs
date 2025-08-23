@@ -12,3 +12,13 @@ public class PutMsgDto
 
     #endregion Properties
 }
+
+public class Result
+{
+    #region Properties
+
+    public string? resultCode { get; set; }
+    public string? resultDesc { get; set; }
+
+    #endregion Properties
+}
