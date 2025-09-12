@@ -66,7 +66,7 @@ Console.OutputEncoding = System.Text.Encoding.UTF8;
 Console.ForegroundColor = ConsoleColor.Cyan;
 Console.WriteLine(banner);
 Console.ResetColor();
-Log.Information("🚀 服务启动:Services Starting...🔄 ");
+Log.Information("🚀 服务启动:Services Running...🔄 ");
 Log.Information($"🚀 运行环境:MQ接口服务正在运行!!! 请勿随意关闭接口服务，避免造成数据丢失!!! Powered by {RuntimeInformation.FrameworkDescription} 强力驱动 on Kestrel 🎉");
 
 app.MapOpenApi();

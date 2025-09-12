@@ -428,7 +428,7 @@ public class Getxml
                         CurrAddr = staff.CurrAddr!,
                         CreateUser = staff.CreateUser!,
                         CreateTime = staff.CreateTime!,
-                        YbCode = staff.yb_code!,
+                        //YbCode = staff.yb_code!,
                     }
                     //     Msg = new Msg
                     //     {
