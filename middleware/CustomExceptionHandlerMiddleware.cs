@@ -1,51 +1,61 @@
 using MQWebApplication.Models;
 using Newtonsoft.Json;
 
-namespace MQWebApplication.middleware
+namespace MQWebApplication.middleware;
+
+public class CustomExceptionHandlerMiddleware
 {
-    public class CustomExceptionHandlerMiddleware
+    private readonly RequestDelegate _next;
+    private readonly ILogger _logger;
+    private readonly IWebHostEnvironment _env; //开发环境
+
+    public CustomExceptionHandlerMiddleware(RequestDelegate next, ILogger<CustomExceptionHandlerMiddleware> logger,
+        IWebHostEnvironment env)
     {
-        private readonly RequestDelegate _next;
-        private readonly ILogger _logger;
+        _next = next;
+        _logger = logger;
+        _env = env;
+    }
 
-        public CustomExceptionHandlerMiddleware(RequestDelegate next, ILogger<CustomExceptionHandlerMiddleware> logger)
+    public async Task InvokeAsync(HttpContext context)
+    {
+        try
         {
-            _next = next;
-            _logger = logger;
+            await _next(context);
         }
-
-        public async Task InvokeAsync(HttpContext context)
+        catch (Exception ex)
         {
-            try
+            if (context.Response.HasStarted)
             {
-                await _next(context);
+                _logger.LogWarning(ex, "响应已开始，无法返回异常数据");
+                return;
             }
-            catch (Exception ex)
+
+            // 日志（完整异常）
+            _logger.LogError(ex, "未处理异常: {Message}", ex.Message);
+
+            // 响应头
+            context.Response.Clear();
+            context.Response.ContentType = "application/json; charset=utf-8";
+            context.Response.StatusCode = ex switch
             {
-                // 如果响应已经开始，就无法再写入数据，只记录日志
-                if (context.Response.HasStarted)
-                {
-                    _logger.LogWarning(ex, "响应已开始，无法返回异常数据");
-                    return;
-                }
+                UnauthorizedAccessException => StatusCodes.Status401Unauthorized,
+                ArgumentException => StatusCodes.Status400BadRequest,
+                _ => StatusCodes.Status500InternalServerError
+            };
 
-                // 设置返回类型和状态码
-                context.Response.ContentType = "application/json";
-                context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+            // 构造返回
+            var errorResponse = new Result
+            {
+                resultCode = context.Response.StatusCode.ToString(),
+                resultDesc = _env.IsDevelopment()
+                    ? $"{ex.Message}\n{ex.StackTrace}"
+                    : "系统异常，请联系管理员"
+            };
 
-                // 构造返回对象
-                var errorResponse = new Result
-                {
-                    resultCode = "500",
-                    resultDesc = ex.Message // 后端可用的异常信息
-                };
-
-                // 记录完整日志（包含堆栈）
-                _logger.LogError(ex, "捕获异常: {0}", JsonConvert.SerializeObject(errorResponse));
-
-                // 返回数据给后端
-                await context.Response.WriteAsync(JsonConvert.SerializeObject(errorResponse));
-            }
+            // 返回前端
+            var json = JsonConvert.SerializeObject(errorResponse);
+            await context.Response.WriteAsync(json);
         }
     }
 }
