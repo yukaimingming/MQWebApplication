@@ -62,18 +62,36 @@ public class DailyMqTaskService : BackgroundService
         while (!stoppingToken.IsCancellationRequested)
             try
             {
-                // 计算下一次执行时间（第二天的午夜0点）
                 var now = DateTime.Now;
-                // var nextRunTime = now.Date.AddDays(1); // .Date 获取日期部分（时间为00:00:00）
-                var executionTime = TimeSpan.Parse(_configuration["DailyExecutionTime"] ?? "00:00:00");
+                
+                // 读取多个执行时间点配置（用逗号分隔，如 "08:30:00,20:00:00"）
+                var executionTimesConfig = _configuration["DailyExecutionTimes"] ?? _configuration["DailyExecutionTime"] ?? "00:00:00";
+                var executionTimes = executionTimesConfig
+                    .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+                    .Select(t => TimeSpan.Parse(t.Trim()))
+                    .OrderBy(t => t)
+                    .ToList();
 
-                // 计算下一次执行时间
-                var nextRunTime = now.Date.Add(executionTime);
-                if (now >= nextRunTime) nextRunTime = nextRunTime.AddDays(1);
+                // 计算下一次执行时间（从多个时间点中找出最近的）
+                DateTime? nextRunTime = null;
+                foreach (var executionTime in executionTimes)
+                {
+                    var candidateTime = now.Date.Add(executionTime);
+                    if (candidateTime > now)
+                    {
+                        nextRunTime = candidateTime;
+                        break;
+                    }
+                }
+                
+                // 如果今天所有时间点都已过，则取明天的第一个时间点
+                nextRunTime ??= now.Date.AddDays(1).Add(executionTimes.First());
+
                 // 计算需要延迟的时间
-                var delay = nextRunTime - now;
+                var delay = nextRunTime.Value - now;
 
-                _logger.LogInformation("🚀 下一次定时任务将在{runTime}执行", nextRunTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                _logger.LogInformation("🚀 下一次定时任务将在 {runTime} 执行（共配置 {count} 个执行时间点）", 
+                    nextRunTime.Value.ToString("yyyy-MM-dd HH:mm:ss"), executionTimes.Count);
                 await Task.Delay(delay, stoppingToken);
 
                 _logger.LogInformation("🚀 开始执行定时任务，当前时间: {time}",
